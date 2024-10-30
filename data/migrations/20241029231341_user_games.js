@@ -6,7 +6,12 @@ exports.up = function (knex) {
       .references("id")
       .inTable("users")
       .onDelete("CASCADE");
-    table.integer("game_id").unsigned();
+    table
+      .integer("game_id")
+      .unsigned()
+      .references("id")
+      .inTable("games")
+      .onDelete("CASCADE");
 
     table.primary(["user_id", "game_id"]);
   });

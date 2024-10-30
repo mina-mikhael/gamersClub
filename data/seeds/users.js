@@ -8,7 +8,7 @@ const adminPhone = process.env.ADMIN_PHONE;
 
 exports.seed = async function (knex) {
   // Deletes ALL existing entries in users table
-  await knex("users").truncate();
+  await knex("users").del();
 
   // Hash the password
   const hashedPassword = await bcrypt.hash(adminPassword, saltRounds);

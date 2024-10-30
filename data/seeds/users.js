@@ -23,7 +23,7 @@ exports.seed = async function (knex) {
       phone: adminPhone,
       password: hashedPassword, // Store hashed password
       avatar: null,
-      bio: "I am the admin of the platform.",
+      bio: "I'm not a man with to many faces, the mask I wear is one.",
       city: "Clearwater",
       state: "FL",
       country: "USA",

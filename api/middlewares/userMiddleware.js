@@ -25,4 +25,5 @@ async function usernameValidate(req, res, next) {
 
 module.exports = {
   userExists,
+  usernameValidate,
 };

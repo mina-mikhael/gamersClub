@@ -19,6 +19,10 @@ async function getUserById(userId) {
   return knex("users").where({ id: userId }).first();
 }
 
+async function getUserByUsername(username) {
+  return knex("users").where({ username }).first();
+}
+
 async function updateUser(userId, userData) {
   const { password, ...updateFields } = userData;
 
@@ -38,6 +42,7 @@ async function deleteUser(userId) {
 module.exports = {
   createUser,
   getUserById,
+  getUserByUsername,
   updateUser,
   deleteUser,
 };

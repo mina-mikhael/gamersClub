@@ -2,9 +2,13 @@
 const express = require("express");
 const router = express.Router();
 const userModel = require("../models/userModel");
+const {
+  userExists,
+  usernameValidate,
+} = require("../middlewares/userMiddleware");
 
 // POST /api/users - Create a new user
-router.post("/", async (req, res, next) => {
+router.post("/", usernameValidate, async (req, res, next) => {
   try {
     const userId = await userModel.createUser(req.body);
     res.status(201).json({ message: "User created successfully", userId });
@@ -14,7 +18,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // PUT /api/users/:id - Update an existing user
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", userExists, async (req, res, next) => {
   try {
     await userModel.updateUser(req.params.id, req.body);
     res.json({ message: "User updated successfully" });
@@ -24,7 +28,7 @@ router.put("/:id", async (req, res, next) => {
 });
 
 // DELETE /api/users/:id - Delete a user
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", userExists, async (req, res, next) => {
   try {
     await userModel.deleteUser(req.params.id);
     res.json({ message: "User deleted successfully" });
